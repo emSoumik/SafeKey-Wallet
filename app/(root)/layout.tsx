@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
 import { Suspense } from 'react';
 import ErrorBoundary from '@/components/ErrorBoundary';
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -15,6 +16,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </Suspense>
       </ErrorBoundary>
       <Toaster />
+      <SpeedInsights />
     </main>
   );
 };

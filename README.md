@@ -1,8 +1,12 @@
 # SafeKey Wallet
 ![SafeKey Wallet Homepage](image.png)
 
-SafeKey Wallet is a secure and user-friendly web application for generating and managing Ethereum and Solana wallets.The application provides features such as generating seed phrases, recovering wallets, Built with Next.js, this project leverages modern web technologies to provide a seamless experience for users.
+SafeKey Wallet is a secure and user-friendly web application for generating and managing Ethereum and Solana wallets. The application provides features such as generating seed phrases, recovering wallets. Built with Next.js, this project leverages modern web technologies to provide a seamless experience for users.
 
+## View Online
+
+View the live project: <br>
+https://safekey-wallet.vercel.app
 
 ## Getting Started
 

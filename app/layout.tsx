@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const Glancyr500 = localFont({
   src: "./fonts/glancyr500.ttf",
@@ -30,6 +31,7 @@ export default function RootLayout({
         className={`${Glancyr500.variable} ${Glancyr700.variable} antialiased`}
       >
         {children}
+        <SpeedInsights /> {/* Add SpeedInsights component */}
       </body>
     </html>
   );

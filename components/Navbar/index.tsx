@@ -19,7 +19,7 @@ const Navbar = React.memo(() => {
         </h2>
       </div>
       <div className="flex items-center gap-8">
-        <Link href="https://github.com/emSoumik" target="_blank" className="text-white hover:text-gray-300">
+        <Link href="https://github.com/emSoumik/SafeKey-Wallet" target="_blank" className="text-white hover:text-gray-300">
           <GitHubLogoIcon className="h-6 w-6 transition-transform transform hover:scale-110" />
         </Link>
         <Link href="/">
