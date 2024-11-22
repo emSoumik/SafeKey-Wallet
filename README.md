@@ -1,8 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SafeKey Wallet
+![SafeKey Wallet Homepage](image.png)
+
+SafeKey Wallet is a secure and user-friendly web application for generating and managing Ethereum and Solana wallets.The application provides features such as generating seed phrases, recovering wallets, Built with Next.js, this project leverages modern web technologies to provide a seamless experience for users.
+
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+Ensure you have the following installed on your machine:
+
+- Node.js (v14 or higher)
+- npm (v6 or higher) or yarn (v1.22 or higher)
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-username/safekey-wallet.git
+cd safekey-wallet
+```
+
+2. Install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### Running the Development Server
+
+Start the development server:
 
 ```bash
 npm run dev
@@ -16,9 +46,31 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+You can start editing the page by modifying 
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+page.tsx
+
+. The page auto-updates as you edit the file.
+
+### Building for Production
+
+To create an optimized production build:
+
+```bash
+npm run build
+# or
+yarn build
+```
+
+### Running the Production Server
+
+After building the project, you can start the production server:
+
+```bash
+npm start
+# or
+yarn start
+```
 
 ## Learn More
 
