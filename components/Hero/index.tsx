@@ -6,6 +6,7 @@ import HalfCircleGradient from "./HalfCircleGradient";
 import { ArrowTopRightIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import Image from "next/image";
+import GradualSpacing from "../ui/gradual-spacing";
 
 const Hero = React.memo(() => {
   const containerVariants = {
@@ -33,7 +34,7 @@ const Hero = React.memo(() => {
     const handleScroll = () => {
       if (heroSection.current && backgroundImage.current) {
         const scrollTop = window.pageYOffset;
-        const offset = scrollTop * 0.3; // Adjust the parallax effect intensity here
+        const offset = scrollTop * 0.7; // Adjust the parallax effect intensity here
         backgroundImage.current.style.transform = `translateY(${offset}px)`;
       }
     };
@@ -57,7 +58,7 @@ const Hero = React.memo(() => {
         />
       </div>
       <HalfCircleGradient position="bottom" />
-
+      
       <motion.div
         variants={containerVariants}
         initial="hidden"
@@ -68,22 +69,23 @@ const Hero = React.memo(() => {
           variants={itemVariants}
           className="max-w-5xl mx-auto text-center px-4 z-10"
         >
-          <span className="inline-block px-6 py-2 rounded-full bg-white/10 backdrop-blur-md text-sm mb-6">
+            <span className="inline-block px-6 py-2 rounded-full bg-white/10 backdrop-blur-md text-sm mb-6">
             Secure • Fast • Reliable
-          </span>
-          <h1 className="text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-blue to-white mb-6 title">
-            SafeKey Wallet
-          </h1>
+            </span>
+            <GradualSpacing
+            className="text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white via-blue mb-5 title"
+            text="SafeKey Wallet"
+            />
           <p className="text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
             Your secure gateway to Web3. Generate and manage your Ethereum and Solana wallets with confidence.
           </p>
         </motion.div>
-        <motion.div 
+        <motion.div
           variants={itemVariants}
           className="flex items-center justify-center gap-6 flex-wrap"
         >
           <Link href="/solwallet">
-            <Button className="bg-blue hover:bg-blue/90 text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105">
+            <Button className="bg-blue/60 backdrop-blur-md hover:bg-blue/90 text-white px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105 border border-black/10">
               Solana Wallet
             </Button>
           </Link>
