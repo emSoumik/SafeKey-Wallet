@@ -1,23 +1,16 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Metadata } from "next";
 
-const Glancyr500 = localFont({
-  src: "./fonts/glancyr500.ttf",
-  variable: "--font-glancyr",
-  weight: "100 900",
-});
-
-const Glancyr700 = localFont({
-  src: "./fonts/glancyr700.ttf",
-  variable: "--font-glancyr700",
-  weight: "100 900",
+const jakarta = Plus_Jakarta_Sans({ 
+  subsets: ['latin'],
+  variable: '--font-jakarta'
 });
 
 export const metadata: Metadata = {
   title: "SafeKey Wallet",
-  description: "Generate your own web3 wallet",
+  description: "Secure and elegant wallet management for Ethereum and Solana",
 };
 
 export default function RootLayout({
@@ -27,11 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${Glancyr500.variable} ${Glancyr700.variable} antialiased`}
-      >
+      <body className={`${jakarta.variable} font-sans antialiased bg-[#0A0A0A]`}>
         {children}
-        <SpeedInsights /> {/* Add SpeedInsights component */}
+        <SpeedInsights />
       </body>
     </html>
   );
