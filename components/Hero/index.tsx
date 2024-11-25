@@ -27,36 +27,8 @@ const Hero = React.memo(() => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
-  const heroSection = useRef<HTMLDivElement>(null);
-  const backgroundImage = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (heroSection.current && backgroundImage.current) {
-        const scrollTop = window.pageYOffset;
-        const offset = scrollTop * 0.7; // Adjust the parallax effect intensity here
-        backgroundImage.current.style.transform = `translateY(${offset}px)`;
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
-    <div
-      className="relative w-full flex flex-col items-center justify-center lg:py-[10%] py-[20%] text-white h-screen bg-cover bg-center"
-      ref={heroSection}
-    >
-      <div ref={backgroundImage} style={{ backgroundImage: "url('/placeholder-background.jpg')" }} className="absolute inset-0 z-[-1] w-full h-full">
-        <Image 
-          src="/placeholder-background.jpg"
-          alt="Background"
-          priority
-          fill
-          className="object-cover"
-        />
-      </div>
+    <div className="relative w-full flex flex-col items-center justify-center lg:py-[10%] py-[20%] text-white h-screen bg-cover bg-center">
       <HalfCircleGradient position="bottom" />
       
       <motion.div
@@ -76,7 +48,7 @@ const Hero = React.memo(() => {
             className="text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-white via-blue mb-5 title"
             text="SafeKey Wallet"
             />
-          <p className="text-xl text-white/80 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl font-medium text-white/80 max-w-2xl mx-auto leading-relaxed">
             Your secure gateway to Web3. Generate and manage your Ethereum and Solana wallets with confidence.
           </p>
         </motion.div>

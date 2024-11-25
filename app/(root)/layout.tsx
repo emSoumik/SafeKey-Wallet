@@ -1,6 +1,4 @@
 import Navbar from "@/components/Navbar";
-import DotPattern from "@/components/ui/dot-pattern";
-import { cn } from "@/lib/utils";
 import { Toaster } from "sonner";
 import { Suspense } from 'react';
 import ErrorBoundary from '@/components/ErrorBoundary';

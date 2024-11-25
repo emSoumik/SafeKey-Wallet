@@ -4,7 +4,7 @@ import { mnemonicToSeed } from "bip39";
 import { Wallet } from "ethers";
 import { HDNodeWallet } from "ethers";
 import { motion } from "framer-motion";
-import { Eye, Trash } from "lucide-react";
+import { Eye, Trash, Copy } from "lucide-react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -130,21 +130,23 @@ const GenerateEthWallet = ({ mnemonic, setMnemonic }: Props) => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.5 }}
-        className="w-full flex items-center justify-between max-sm:flex-col"
+        className="w-full flex items-center justify-between max-sm:flex-col gap-4"
       >
-        <h2 className="text-5xl">Your Wallets</h2>
-        <div className="flex items-center gap-2">
+        <h2 className="text-4xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
+          Your Wallets
+        </h2>
+        <div className="flex items-center gap-3">
           <Button
             onClick={() => generateEthWallet()}
-            className="bg-white text-black hover:text-white"
+            className="copy-button text-white px-6 h-11 rounded-xl flex items-center gap-2 font-medium"
           >
             Add Wallet
           </Button>
           <Button
             onClick={() => handleClear()}
-            className="bg-white text-black hover:text-white"
+            className="bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 px-6 h-11 rounded-xl font-medium border border-white/10"
           >
-            Clear Wallets
+            Clear All
           </Button>
         </div>
       </motion.div>
@@ -152,55 +154,73 @@ const GenerateEthWallet = ({ mnemonic, setMnemonic }: Props) => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.3, delay: 0.75 }}
-        className="grid md:grid-cols-2 grid-cols-1 gap-5"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5"
       >
         {keypairs.map((keypair, index) => (
           <div
             key={index}
-            className="flex flex-col p-8 border border-dark-4 bg-black z-10 rounded-3xl"
+            className="flex flex-col p-4 sm:p-6 border border-white/10 bg-white/5 backdrop-blur-lg rounded-xl sm:rounded-2xl hover:border-blue-500/30 transition-all duration-300"
           >
-            <div className="flex items-center justify-between">
-              <div className="flex items-end gap-2  ">
-                <Image
-                  src={`/eth.png`}
-                  alt=""
-                  width={1024}
-                  height={1024}
-                  className="size-9"
-                />
-                <h1 className="text-2xl leading-8">Wallet {index + 1}</h1>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="p-1.5 sm:p-2 bg-white/10 backdrop-blur-sm rounded-lg sm:rounded-xl">
+                  <Image
+                    src="/eth.png"
+                    alt="ETH Logo"
+                    width={24}
+                    height={24}
+                    className="w-5 h-5 sm:w-6 sm:h-6"
+                  />
+                </div>
+                <h3 className="text-lg sm:text-xl font-medium">Wallet {index + 1}</h3>
               </div>
-              <Trash
-                className="w-4 text-red hover:text-red/50 cursor-pointer"
-                onClick={() => {
-                  handleWalletDelete(index);
-                }}
-              />
-            </div>
-            <div className="my-3 px-3 break-words">
-              <p className="text-xl">Public Key:</p>
-              <p
-                onClick={() => handleCopyToClipboard(keypair.publicKey)}
-                className="text-xs cursor-pointer"
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-red-500 hover:text-red-400 hover:bg-red-500/10 h-8 w-8"
+                onClick={() => handleWalletDelete(index)}
               >
-                {keypair.publicKey}
-              </p>
+                <Trash className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+              </Button>
             </div>
-            <div className="px-3 break-words">
-              <p className="text-xl">Private Key:</p>
-              <div className="flex justify-between items-start">
-                <p
-                  onClick={() => handleCopyToClipboard(keypair.privateKey)}
-                  className="text-xs border-none focus:ring-0 word-break: break-all w-[80%] cursor-pointer"
+            <div className="space-y-3 sm:space-y-4">
+              <div className="space-y-1.5">
+                <label className="text-xs sm:text-sm font-medium text-white/60">Public Key</label>
+                <div
+                  onClick={() => handleCopyToClipboard(keypair.publicKey)}
+                  className="p-2.5 sm:p-3 bg-black/20 rounded-lg font-mono text-xs sm:text-sm cursor-pointer hover:bg-black/30 transition-colors group relative"
                 >
-                  {!showPrivateKey[index]
-                    ? "*".repeat(keypair.privateKey.length)
-                    : keypair.privateKey}
-                </p>
-                <Eye
-                  className="w-4 cursor-pointer hover:text-zinc-600"
-                  onClick={() => togglePrivateKeyVisibility(index)}
-                />
+                  <span className="text-white/80 break-all">{keypair.publicKey}</span>
+                  <div className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Copy className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blue-500" />
+                  </div>
+                </div>
+              </div>
+              <div className="space-y-1.5">
+                <label className="text-xs sm:text-sm font-medium text-white/60">Private Key</label>
+                <div className="relative">
+                  <div
+                    onClick={() => handleCopyToClipboard(keypair.privateKey)}
+                    className="p-2.5 sm:p-3 bg-black/20 rounded-lg font-mono text-xs sm:text-sm cursor-pointer hover:bg-black/30 transition-colors group"
+                  >
+                    <span className="text-white/80 break-all pr-12 sm:pr-16">
+                      {!showPrivateKey[index]
+                        ? "*".repeat(keypair.privateKey.length)
+                        : keypair.privateKey}
+                    </span>
+                    <div className="absolute right-10 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Copy className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-blue-500" />
+                    </div>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="absolute right-1.5 sm:right-2 top-1/2 -translate-y-1/2 text-white/60 hover:text-white h-7 w-7 sm:h-8 sm:w-8"
+                    onClick={() => togglePrivateKeyVisibility(index)}
+                  >
+                    <Eye className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
